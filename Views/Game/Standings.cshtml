@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SclBaseball.ViewModels.Standing>
+
+@{
+    ViewBag.Title = "2018 South Central League Standings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>2018 South Central League Standings</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Team</th>
+                    <th scope="col">Overall</th>
+                    <th scope="col">PCT</th>
+                    <th scope="col">GB</th>
+                    <th scope="col" class="hidden-xs">Home</th>
+                    <th scope="col" class="hidden-xs">Road</th>
+                    <th scope="col" class="hidden-xs">RS</th>
+                    <th scope="col" class="hidden-xs">RS/G</th>
+                    <th scope="col" class="hidden-xs">RA</th>
+                    <th scope="col" class="hidden-xs">RA/G</th>
+                    <th scope="col">GP</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td scope="row">@Html.DisplayFor(modelItem => item.Team)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalWins)-@Html.DisplayFor(modelItem => item.TotalLosses)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Percentage)</td>
+                        <td>@Html.DisplayFor(modelItem => item.GamesBehind)</td>
+                        <td class="hidden-xs">(@Html.DisplayFor(modelItem => item.HomeWins)-@Html.DisplayFor(modelItem => item.HomeLosses))</td>
+                        <td class="hidden-xs">(@Html.DisplayFor(modelItem => item.AwayWins)-@Html.DisplayFor(modelItem => item.AwayLosses))</td>
+                        <td class="hidden-xs">@Html.DisplayFor(modelItem => item.RunsScored)</td>
+                        <td class="hidden-xs">@Html.DisplayFor(modelItem => item.RunsScoredPerGame)</td>
+                        <td class="hidden-xs">@Html.DisplayFor(modelItem => item.RunsAllowed)</td>
+                        <td class="hidden-xs">@Html.DisplayFor(modelItem => item.RunsAllowedPerGame)</td>
+                        <td>@Html.DisplayFor(modelItem => item.GamesPlayed)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

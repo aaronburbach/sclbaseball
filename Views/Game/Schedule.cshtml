@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SclBaseball.Models.Game>
+
+@{
+    ViewBag.Title = "2018 South Central League Schedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>2018 South Central League Schedule</h2>
+
+        @*@Html.ActionLink("Create New", "Create")*@
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 text-center">
+        @{ DateTime scheduledDate = DateTime.MinValue;}
+
+        @foreach (var item in Model)
+        {
+            if (!scheduledDate.Equals(item.ScheduledDate))
+            {
+                <br />
+                if (item.PlayedDate.HasValue || item.InningsPlayed == -1)
+                {
+                    <div style="text-decoration:underline;text-align:center;color:red;"><strong>@item.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
+                }
+                else
+                {
+                    <div style="text-decoration:underline;text-align:center;"><strong>@item.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
+                }
+            }
+
+            <div style="text-align:center;">
+                @if (item.PlayedDate.HasValue)
+                {
+                    <span style="color:red;">
+                        @Html.DisplayFor(modelItem => item.AwayTeam) @Html.DisplayFor(modelItem => item.AwayScore) @@ @Html.DisplayFor(modelItem => item.HomeTeam) @Html.DisplayFor(modelItem => item.HomeScore)
+                        @if (item.IsOnRadio)
+                        {
+                            <span>(@item.RadioStation)</span>
+                        }
+                    </span>
+                }
+                else if (item.InningsPlayed == -1)
+                {
+                    <span style="color:blue;">
+                        @Html.DisplayFor(modelItem => item.AwayTeam) @@ @Html.DisplayFor(modelItem => item.HomeTeam)
+                        @if (item.IsOnRadio)
+                        {
+                            <span>(@item.RadioStation) - PPD</span>
+                        }
+                    </span>
+                }
+                else
+                {
+                    <span>
+                        @Html.DisplayFor(modelItem => item.AwayTeam) @@ @Html.DisplayFor(modelItem => item.HomeTeam)
+                        @if (item.IsOnRadio)
+                        {
+                            <span>(@item.RadioStation)</span>
+                        }
+                    </span>
+                }
+            </div>
+
+            scheduledDate = item.ScheduledDate;
+        }
+
+        <br />
+        <div style="text-decoration:underline;text-align:center;"><strong>District 6B Tournament - Lesterville</strong></div>
+        <div style="text-align:center;">Thursday, July 19 - Saturday, July 28</div>
+
+        <br />
+        <div style="text-decoration:underline;text-align:center;"><strong>Class B State Tournament - Sioux Falls</strong></div>
+        <div style="text-align:center;">Wednesday, August 1 - Sunday, August 12</div>
+    </div>
+</div>

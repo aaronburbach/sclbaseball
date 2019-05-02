@@ -1,0 +1,42 @@
+﻿USE [sclbaseball]
+GO
+
+/****** Object: Table [dbo].[Game] Script Date: 5/11/2018 12:35:00 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Game_Backup] (
+    [Id]            INT            IDENTITY (1, 1) NOT NULL,
+    [ScheduledDate] DATETIME       NOT NULL,
+    [PlayedDate]    DATETIME       NULL,
+    [InningsPlayed] INT            NOT NULL,
+    [HomeTeam]      NVARCHAR (MAX) NULL,
+    [HomeScore]     INT            NOT NULL,
+    [AwayTeam]      NVARCHAR (MAX) NULL,
+    [AwayScore]     INT            NOT NULL,
+    [Location]      NVARCHAR (MAX) NULL,
+    [CreatedDate]   DATETIME       NOT NULL,
+    [IsOnRadio]     BIT            NOT NULL,
+    [RadioStation]  NVARCHAR (MAX) NULL,
+    [IsLeagueGame]  BIT            NOT NULL
+);
+
+-- SET IDENTITY_INSERT to ON.  
+SET IDENTITY_INSERT dbo.Game_Backup ON;
+GO
+
+INSERT INTO dbo.Game_Backup ([Id],[ScheduledDate],[PlayedDate],[InningsPlayed],[HomeTeam],[HomeScore],[AwayTeam],[AwayScore],[Location],[CreatedDate],[IsOnRadio],[RadioStation],[IsLeagueGame])
+SELECT [Id],[ScheduledDate],[PlayedDate],[InningsPlayed],[HomeTeam],[HomeScore],[AwayTeam],[AwayScore],[Location],[CreatedDate],[IsOnRadio],[RadioStation],[IsLeagueGame]
+FROM dbo.Game
+GO
+
+SELECT *
+FROM dbo.Game_Backup
+GO
+
+-- SET IDENTITY_INSERT to OFF
+SET IDENTITY_INSERT dbo.Game_Backup OFF;
+GO
