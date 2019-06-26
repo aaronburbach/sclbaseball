@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SclBaseball.Models.Game>
+﻿@model IEnumerable<SclBaseball.ViewModels.ScheduleViewModel>
 
 @{
     ViewBag.Title = $"{DateTime.Now.Year} South Central League Schedule";
@@ -16,39 +16,39 @@
     <div class="col-lg-12 text-center">
         @{ DateTime scheduledDate = DateTime.MinValue;}
 
-        @foreach (var item in Model)
+        @foreach (var scheduledGame in Model)
         {
-            if (!scheduledDate.DayOfYear.Equals(item.ScheduledDate.DayOfYear))
+            if (!scheduledDate.DayOfYear.Equals(scheduledGame.ScheduledDate.DayOfYear))
             {
                 <br />
-                if (item.PlayedDate.HasValue || item.InningsPlayed == -1)
+                if (scheduledGame.PlayedDate.HasValue || scheduledGame.InningsPlayed == -1)
                 {
-                    <div style="text-decoration:underline;text-align:center;color:red;"><strong>@item.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
+                    <div style="text-decoration:underline;text-align:center;color:red;"><strong>@scheduledGame.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
                 }
                 else
                 {
-                    <div style="text-decoration:underline;text-align:center;"><strong>@item.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
+                    <div style="text-decoration:underline;text-align:center;"><strong>@scheduledGame.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
                 }
             }
 
             <div style="text-align:center;">
-                @if (item.PlayedDate.HasValue)
+                @if (scheduledGame.PlayedDate.HasValue)
                 {
                     <span style="color:red;">
-                        @Html.DisplayFor(modelItem => item.AwayTeam) @Html.DisplayFor(modelItem => item.AwayScore) @@ @Html.DisplayFor(modelItem => item.HomeTeam) @Html.DisplayFor(modelItem => item.HomeScore)
-                        @if (item.IsOnRadio)
+                        @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayScore) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam) @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeScore)
+                        @if (scheduledGame.IsOnRadio)
                         {
-                            <span>(@item.RadioStation)</span>
+                            <span>(@scheduledGame.RadioStation)</span>
                         }
                     </span>
                 }
-                else if (item.InningsPlayed == -1)
+                else if (scheduledGame.InningsPlayed == -1)
                 {
                     <span style="color:blue;">
-                        @Html.DisplayFor(modelItem => item.AwayTeam) @@ @Html.DisplayFor(modelItem => item.HomeTeam)
-                        @if (item.IsOnRadio)
+                        @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam)
+                        @if (scheduledGame.IsOnRadio)
                         {
-                            <span>(@item.RadioStation) - PPD</span>
+                            <span>(@scheduledGame.RadioStation) - PPD</span>
                         }
                         else
                         {
@@ -59,11 +59,11 @@
                 else
                 {
                     <span>
-                        @Html.DisplayFor(modelItem => item.AwayTeam) @@ @Html.DisplayFor(modelItem => item.HomeTeam)
-                        @if (item.ScheduledDate.Hour > 0 && item.ScheduledDate.Hour != 19) // 19 is for the 7:30PM regular games
+                        @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam)
+                        @if (scheduledGame.ScheduledDate.Hour > 0 && scheduledGame.ScheduledDate.Hour != 19) // 19 is for the 7:30PM regular games
                         {
                             var postfix = "AM";
-                            var hour = item.ScheduledDate.Hour;
+                            var hour = scheduledGame.ScheduledDate.Hour;
                             if (hour >= 12)
                             {
                                 postfix = "PM";
@@ -72,24 +72,24 @@
                             {
                                 hour = hour - 12;
                             }
-                            if (item.ScheduledDate.Minute == 0)
+                            if (scheduledGame.ScheduledDate.Minute == 0)
                             {
                                 <span>(@hour @postfix)</span>
                             }
                             else
                             {
-                                <span>(@hour:@item.ScheduledDate.Minute @postfix)</span>
+                                <span>(@hour:@scheduledGame.ScheduledDate.Minute @postfix)</span>
                             }
                         }
-                        @if (item.IsOnRadio)
+                        @if (scheduledGame.IsOnRadio)
                         {
-                            <span>(@item.RadioStation)</span>
+                            <span>(@scheduledGame.RadioStation)</span>
                         }
                     </span>
                 }
             </div>
 
-            scheduledDate = item.ScheduledDate;
+            scheduledDate = scheduledGame.ScheduledDate;
         }
 
         @*<br />

@@ -33,7 +33,27 @@ namespace SclBaseball.Controllers
         {
             var games = _gameService.GetGames();
 
-            return View(games.OrderBy(g => g.ScheduledDate.DayOfYear));
+            var scheduledGames = new List<ScheduleViewModel>();
+
+            if (games.Count > 0)
+            {
+                games.ForEach(g => scheduledGames.Add(new ScheduleViewModel {
+                    ScheduledDate = g.ScheduledDate,
+                    PlayedDate = g.PlayedDate,
+                    InningsPlayed = g.InningsPlayed,
+                    HomeTeam = g.HomeTeam,
+                    HomeScore = g.HomeScore,
+                    AwayTeam = g.AwayTeam,
+                    AwayScore = g.AwayScore,
+                    Location = g.Location,
+                    CreatedDate = g.CreatedDate,
+                    IsOnRadio = g.IsOnRadio,
+                    RadioStation = g.RadioStation,
+                    IsLeagueGame = g.IsLeagueGame
+                }));
+            }
+
+            return View(scheduledGames.OrderBy(g => g.ScheduledDate.DayOfYear));
         }
 
         public ActionResult Postseason()
@@ -43,7 +63,7 @@ namespace SclBaseball.Controllers
 
         public ActionResult Standings()
         {
-            var standings = new List<Standing>();
+            var standings = new List<StandingsViewModel>();
 
             var results = new Dictionary<string, List<Game>>
             {
@@ -80,7 +100,7 @@ namespace SclBaseball.Controllers
                 var teamAwayRunsAllowed = teamGames.Where(g => g.AwayTeam == result.Key && g.PlayedDate != null).Sum(r => r.HomeScore);
                 var teamGamesPlayed = teamGames.Where(g => g.PlayedDate != null && (g.HomeTeam == result.Key || g.AwayTeam == result.Key)).Count();
 
-                standings.Add(new Standing
+                standings.Add(new StandingsViewModel
                 {
                     Team = result.Key,
                     TotalWins = teamHomeWins + teamHomeLosses,

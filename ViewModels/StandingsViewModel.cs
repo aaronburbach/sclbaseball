@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SclBaseball.ViewModels
 {
-    public class Standing
+    public class StandingsViewModel
     {
         public string Team { get; set; }
         public int TotalWins { get; set; }
