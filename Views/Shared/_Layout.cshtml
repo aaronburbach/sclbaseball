@@ -49,7 +49,8 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink("Schedule", "Schedule", "Game")</li>
-                    <li>@Html.RouteLink("Standings", "Standings")
+                    <li>@Html.ActionLink("Standings", "Standings", "Game")</li>
+                    @*<li>@Html.ActionLink("Postseason", "Postseason", "Game")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

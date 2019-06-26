@@ -30,6 +30,7 @@ namespace SclBaseball.Logic.Services
             //            Cache["globalData"] = dataObject;
 
             var games = from g in db.Games
+                        where g.ScheduledDate.Year == DateTime.Now.Year
                         select g;
 
             //        }

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<SclBaseball.Models.Game>
 
 @{
-    ViewBag.Title = "2018 Games";
+    ViewBag.Title = $"{DateTime.Now.Year} Games";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-        <h2>2018 Games</h2>
+        <h2>@DateTime.Now.Year Games</h2>
 
         @*@Html.ActionLink("Create New", "Create")*@
         <div class="row">

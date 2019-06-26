@@ -11,6 +11,7 @@ using SclBaseball.Logic.Services;
 
 namespace SclBaseball.Controllers
 {
+    [RequireHttps]
     public class GameController : Controller
     {
         private GameContext db = new GameContext();
@@ -32,7 +33,12 @@ namespace SclBaseball.Controllers
         {
             var games = _gameService.GetGames();
 
-            return View(games.OrderBy(g => g.ScheduledDate));
+            return View(games.OrderBy(g => g.ScheduledDate.DayOfYear));
+        }
+
+        public ActionResult Postseason()
+        {
+            return View();
         }
 
         public ActionResult Standings()
@@ -94,7 +100,8 @@ namespace SclBaseball.Controllers
             }
 
             // Order to get the leader in wins/losses.
-            standings = standings.OrderByDescending(s => s.Percentage).ThenByDescending(s => s.TotalWins).ThenBy(s => s.TotalLosses).ToList();
+            //standings = standings.OrderByDescending(s => s.Percentage).ThenByDescending(s => s.TotalWins).ThenBy(s => s.TotalLosses).ToList();
+            standings = standings.OrderByDescending(s => s.TotalWins).ThenBy(s => s.TotalLosses).ToList();
             var leader = standings.First();
 
             foreach (var s in standings)

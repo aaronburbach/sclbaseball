@@ -32,6 +32,18 @@ namespace SclBaseball
             );
 
             routes.MapRoute(
+                name: "Postseason",
+                url: "postseason",
+                defaults: new { controller = "Game", action = "Postseason", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "signin-google",
+                url: "signin-google",
+                defaults: new { controller = "Account", action = "ExternalLoginCallback" }
+                );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

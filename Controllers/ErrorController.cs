@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 namespace SclBaseball.Controllers
 {
+    [RequireHttps]
     public class ErrorController : Controller
     {
         // GET: Error
