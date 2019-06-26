@@ -12,6 +12,7 @@ using SclBaseball.Models;
 
 namespace SclBaseball.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class AccountController : Controller
     {

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<SclBaseball.ViewModels.Standing>
 
 @{
-    ViewBag.Title = "2018 South Central League Standings";
+    ViewBag.Title = $"{DateTime.Now.Year} South Central League Standings";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
     <div class="col-lg-12 text-center">
-        <h2>2018 South Central League Standings</h2>
+        <h2>@DateTime.Now.Year South Central League Standings</h2>
     </div>
 </div>
 <div class="row">

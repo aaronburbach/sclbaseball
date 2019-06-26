@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<SclBaseball.Models.Game>
 
 @{
-    ViewBag.Title = "2018 South Central League Schedule";
+    ViewBag.Title = $"{DateTime.Now.Year} South Central League Schedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
     <div class="col-lg-12 text-center">
-        <h2>2018 South Central League Schedule</h2>
+        <h2>@DateTime.Now.Year South Central League Schedule</h2>
 
         @*@Html.ActionLink("Create New", "Create")*@
     </div>
@@ -18,7 +18,7 @@
 
         @foreach (var item in Model)
         {
-            if (!scheduledDate.Equals(item.ScheduledDate))
+            if (!scheduledDate.DayOfYear.Equals(item.ScheduledDate.DayOfYear))
             {
                 <br />
                 if (item.PlayedDate.HasValue || item.InningsPlayed == -1)
@@ -50,12 +50,37 @@
                         {
                             <span>(@item.RadioStation) - PPD</span>
                         }
+                        else
+                        {
+                            <span> - PPD</span>
+                        }
                     </span>
                 }
                 else
                 {
                     <span>
                         @Html.DisplayFor(modelItem => item.AwayTeam) @@ @Html.DisplayFor(modelItem => item.HomeTeam)
+                        @if (item.ScheduledDate.Hour > 0 && item.ScheduledDate.Hour != 19) // 19 is for the 7:30PM regular games
+                        {
+                            var postfix = "AM";
+                            var hour = item.ScheduledDate.Hour;
+                            if (hour >= 12)
+                            {
+                                postfix = "PM";
+                            }
+                            if (hour > 12)
+                            {
+                                hour = hour - 12;
+                            }
+                            if (item.ScheduledDate.Minute == 0)
+                            {
+                                <span>(@hour @postfix)</span>
+                            }
+                            else
+                            {
+                                <span>(@hour:@item.ScheduledDate.Minute @postfix)</span>
+                            }
+                        }
                         @if (item.IsOnRadio)
                         {
                             <span>(@item.RadioStation)</span>
@@ -67,12 +92,30 @@
             scheduledDate = item.ScheduledDate;
         }
 
-        <br />
-        <div style="text-decoration:underline;text-align:center;"><strong>District 6B Tournament - Lesterville</strong></div>
-        <div style="text-align:center;">Thursday, July 19 - Saturday, July 28</div>
+        @*<br />
+            <div style="text-decoration:underline;text-align:center;"><strong>District 6A Tournament - Times & Locations TBD</strong></div>
+            <div style="text-align:center;">Thursday, July 26 - Saturday, July 28</div>*@
 
         <br />
-        <div style="text-decoration:underline;text-align:center;"><strong>Class B State Tournament - Sioux Falls</strong></div>
-        <div style="text-align:center;">Wednesday, August 1 - Sunday, August 12</div>
+        <div>
+            <div style="text-decoration:underline;text-align:center;"><strong>District 6A Tournament - TBD</strong></div>
+        </div>
+
+        <br />
+        <div>
+            <div style="text-decoration:underline;text-align:center;"><strong>District 6B Tournament - Wynot</strong></div>
+            <div style="text-align:center;">Thursday, July 25 - Saturday, August 3</div>
+        </div>
+
+        <br />
+        <div>
+            <div style="text-decoration:underline;text-align:center;"><strong>Class A State Tournament - TBD</strong></div>
+        </div>
+
+        <br />
+        <div>
+            <div style="text-decoration:underline;text-align:center;"><strong>Class B State Tournament - Mitchell</strong></div>
+            <div style="text-align:center;">Wednesday, August 7 - Sunday, August 18</div>
+        </div>
     </div>
 </div>

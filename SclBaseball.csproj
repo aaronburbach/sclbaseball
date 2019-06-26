@@ -27,6 +27,7 @@
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/dac59245-d947-431f-9ade-90087f65055c/resourcegroups/SclBaseball/providers/microsoft.insights/components/SclBaseball2</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/dac59245-d947-431f-9ade-90087f65055c/resourcegroups/SclBaseball/providers/microsoft.insights/components/SclBaseball2</ApplicationInsightsAnnotationResourceId>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -310,6 +311,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Game\Schedule.cshtml" />
     <Content Include="Views\Game\Standings.cshtml" />
+    <Content Include="Views\Game\Postseason.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
