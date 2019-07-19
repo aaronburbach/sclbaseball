@@ -126,11 +126,18 @@ namespace SclBaseball.Controllers
 
             foreach (var s in standings)
             {
-                s.GamesBehind = (decimal) ((leader.TotalWins - s.TotalWins) - (leader.TotalLosses - s.TotalLosses)) / 2;
+                var gamesBehind = (decimal)((leader.TotalWins - s.TotalWins) + (s.TotalLosses - leader.TotalLosses)) / 2;
+                //(decimal)((leader.TotalWins - s.TotalWins) - (leader.TotalLosses - s.TotalLosses)) / 2;
+                s.GamesBehind = gamesBehind < 0 ? 0 : gamesBehind;
+                //s.GamesBehind = (decimal) ((leader.TotalWins - s.TotalWins) + (s.TotalLosses - leader.TotalLosses)) / 2;
             }
 
             // Now order for presentation.
-            standings = standings.OrderBy(s => s.GamesBehind).ThenByDescending(s => s.Percentage).ThenByDescending(s => s.TotalWins).ThenBy(s => s.TotalLosses).ThenBy(s => s.Team).ToList();
+            standings = standings.OrderBy(s => s.GamesBehind).ThenByDescending(s => s.Percentage).ThenByDescending(s => s.TotalWins).ThenBy(s => s.TotalLosses)
+                .ThenBy(s => s.Team.StartsWith("Wynot") ? 1 : 2) // Icky 2019 final standings hack
+                .ThenBy(s => s.Team.StartsWith("Scotland") ? 1 : 2) // Icky 2019 final standings hack
+                //.ThenBy(s => s.Team)
+                .ToList();
 
             return View(standings);
         }
