@@ -33,11 +33,11 @@ namespace SclBaseball.Controllers
         {
             var games = _gameService.GetGames();
 
-            var scheduledGames = new List<ScheduleViewModel>();
+            var scheduledGames = new List<GameViewModel>();
 
             if (games.Count > 0)
             {
-                games.ForEach(g => scheduledGames.Add(new ScheduleViewModel {
+                games.ForEach(g => scheduledGames.Add(new GameViewModel {
                     ScheduledDate = g.ScheduledDate,
                     PlayedDate = g.PlayedDate,
                     InningsPlayed = g.InningsPlayed,
@@ -58,7 +58,19 @@ namespace SclBaseball.Controllers
                 .OrderBy(g => g.Key.DayOfYear)
                 .ToDictionary(g => g.Key, g => g.ToList());
 
-            return View(gamesDictionary);
+            var schedule = new List<ScheduleViewModel>();
+                       
+            foreach (KeyValuePair<DateTime, List<GameViewModel>> entry in gamesDictionary)
+            {
+                schedule.Add(new ScheduleViewModel
+                {
+                    ScheduledDate = entry.Key,
+                    ScheduledGames = entry.Value,
+                    HeaderClass = entry.Value.Any(g => g.PlayedDate.HasValue) ? "game-played" : ""
+                });
+            }
+            
+            return View(schedule);
         }
 
         private string DetermineGameClass(Game g)

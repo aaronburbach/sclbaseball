@@ -1,4 +1,4 @@
-﻿@model Dictionary<DateTime, List<SclBaseball.ViewModels.ScheduleViewModel>>
+﻿@model List<SclBaseball.ViewModels.ScheduleViewModel>
 
 @{
     ViewBag.Title = $"{DateTime.Now.Year} South Central League Schedule";
@@ -17,15 +17,13 @@
         <div><span><button type="button" class="btn btn-danger btn-toggle-reg-szn">Show Regular Season</button></span></div>
 
         <div class="scl-regular-season-container" style="display:none;">
-            @foreach (var date in Model)
+            @foreach (var scheduledDate in Model)
             {
                 <br />
                 @*@game.GameClass*@
-                <div class="scheduled-game-header game-played"><strong>@date.Key.ToString("dddd, MMMM dd")</strong></div>
-
-                var games = date.Value;
-
-                foreach (var game in games)
+                <div class="scheduled-game-header @scheduledDate.HeaderClass"><strong>@scheduledDate.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
+                
+                foreach (var game in scheduledDate.ScheduledGames)
                 {
                     <div class="scheduled-game">
                         <span class="@game.GameClass">
