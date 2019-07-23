@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SclBaseball.ViewModels.ScheduleViewModel>
+﻿@model Dictionary<DateTime, List<SclBaseball.ViewModels.ScheduleViewModel>>
 
 @{
     ViewBag.Title = $"{DateTime.Now.Year} South Central League Schedule";
@@ -17,88 +17,24 @@
         <div><span><button type="button" class="btn btn-danger btn-toggle-reg-szn">Show Regular Season</button></span></div>
 
         <div class="scl-regular-season-container" style="display:none;">
-            @{ DateTime scheduledDate = DateTime.MinValue;}
-
-            @foreach (var scheduledGame in Model)
+            @foreach (var date in Model)
             {
-                if (!scheduledDate.DayOfYear.Equals(scheduledGame.ScheduledDate.DayOfYear))
+                <br />
+                @*@game.GameClass*@
+                <div class="scheduled-game-header game-played"><strong>@date.Key.ToString("dddd, MMMM dd")</strong></div>
+
+                var games = date.Value;
+
+                foreach (var game in games)
                 {
-                    <br />
-                    if (scheduledGame.PlayedDate.HasValue || scheduledGame.InningsPlayed == -1)
-                    {
-                        <div style="text-decoration:underline;text-align:center;color:red;"><strong>@scheduledGame.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
-                    }
-                    else
-                    {
-                        <div style="text-decoration:underline;text-align:center;"><strong>@scheduledGame.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
-                    }
+                    <div class="scheduled-game">
+                        <span class="@game.GameClass">
+                            @game.ScheduledGameText <span>@game.RadioStationText @game.PostponedText</span>
+                        </span>
+                    </div>
                 }
-
-                <div style="text-align:center;">
-                    @if (scheduledGame.PlayedDate.HasValue)
-                    {
-                        <span style="color:red;">
-                            @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayScore) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam) @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeScore)
-                            @if (scheduledGame.IsOnRadio)
-                            {
-                                <span>(@scheduledGame.RadioStation)</span>
-                            }
-                        </span>
-                    }
-                    else if (scheduledGame.InningsPlayed == -1)
-                    {
-                        <span style="color:blue;">
-                            @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam)
-                            @if (scheduledGame.IsOnRadio)
-                            {
-                                <span>(@scheduledGame.RadioStation) - PPD</span>
-                            }
-                            else
-                            {
-                                <span> - PPD</span>
-                            }
-                        </span>
-                    }
-                    else
-                    {
-                        <span>
-                            @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam)
-                            @if (scheduledGame.ScheduledDate.Hour > 0 && scheduledGame.ScheduledDate.Hour != 19) // 19 is for the 7:30PM regular games
-                            {
-                                var postfix = "AM";
-                                var hour = scheduledGame.ScheduledDate.Hour;
-                                if (hour >= 12)
-                                {
-                                    postfix = "PM";
-                                }
-                                if (hour > 12)
-                                {
-                                    hour = hour - 12;
-                                }
-                                if (scheduledGame.ScheduledDate.Minute == 0)
-                                {
-                                    <span>(@hour @postfix)</span>
-                                }
-                                else
-                                {
-                                    <span>(@hour:@scheduledGame.ScheduledDate.Minute @postfix)</span>
-                                }
-                            }
-                            @if (scheduledGame.IsOnRadio)
-                            {
-                                <span>(@scheduledGame.RadioStation)</span>
-                            }
-                        </span>
-                    }
-                </div>
-
-                scheduledDate = scheduledGame.ScheduledDate;
             }
         </div>
-
-        @*<br />
-        <div style="text-decoration:underline;text-align:center;"><strong>District 6A Tournament - Times & Locations TBD</strong></div>
-        <div style="text-align:center;">Thursday, July 26 - Saturday, July 28</div>*@
 
         <br />
         <div>
