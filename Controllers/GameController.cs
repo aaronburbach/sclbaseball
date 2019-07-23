@@ -49,11 +49,22 @@ namespace SclBaseball.Controllers
                     CreatedDate = g.CreatedDate,
                     IsOnRadio = g.IsOnRadio,
                     RadioStation = g.RadioStation,
-                    IsLeagueGame = g.IsLeagueGame
+                    IsLeagueGame = g.IsLeagueGame,
+                    GameClass = DetermineGameClass(g)
                 }));
             }
 
-            return View(scheduledGames.OrderBy(g => g.ScheduledDate.DayOfYear));
+            var gamesDictionary = scheduledGames.GroupBy(g => g.ScheduledDate)
+                .OrderBy(g => g.Key.DayOfYear)
+                .ToDictionary(g => g.Key, g => g.ToList());
+
+            return View(gamesDictionary);
+        }
+
+        private string DetermineGameClass(Game g)
+        {
+            // Icky business rule ... InningsPlayed == -1 == game is postponed
+            return g.PlayedDate.HasValue ? "game-played" : g.InningsPlayed == -1 ? "game-postponed" : "";
         }
 
         public ActionResult Postseason()

@@ -22,3 +22,21 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.scheduled-game-header {
+    text-decoration: underline;
+    text-align: center;
+    font-weight:bold;
+}
+
+.scheduled-game {
+    text-align: center;
+}
+
+.game-played {
+    color: red;
+}
+
+.game-postponed {
+    color: blue;
+}
