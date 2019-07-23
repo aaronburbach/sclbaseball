@@ -14,83 +14,87 @@
 </div>
 <div class="row">
     <div class="col-lg-12 text-center">
-        @{ DateTime scheduledDate = DateTime.MinValue;}
+        <div><span><button type="button" class="btn btn-danger btn-toggle-reg-szn">Show Regular Season</button></span></div>
 
-        @foreach (var scheduledGame in Model)
-        {
-            if (!scheduledDate.DayOfYear.Equals(scheduledGame.ScheduledDate.DayOfYear))
+        <div class="scl-regular-season-container" style="display:none;">
+            @{ DateTime scheduledDate = DateTime.MinValue;}
+
+            @foreach (var scheduledGame in Model)
             {
-                <br />
-                if (scheduledGame.PlayedDate.HasValue || scheduledGame.InningsPlayed == -1)
+                if (!scheduledDate.DayOfYear.Equals(scheduledGame.ScheduledDate.DayOfYear))
                 {
-                    <div style="text-decoration:underline;text-align:center;color:red;"><strong>@scheduledGame.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
+                    <br />
+                    if (scheduledGame.PlayedDate.HasValue || scheduledGame.InningsPlayed == -1)
+                    {
+                        <div style="text-decoration:underline;text-align:center;color:red;"><strong>@scheduledGame.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
+                    }
+                    else
+                    {
+                        <div style="text-decoration:underline;text-align:center;"><strong>@scheduledGame.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
+                    }
                 }
-                else
-                {
-                    <div style="text-decoration:underline;text-align:center;"><strong>@scheduledGame.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
-                }
-            }
 
-            <div style="text-align:center;">
-                @if (scheduledGame.PlayedDate.HasValue)
-                {
-                    <span style="color:red;">
-                        @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayScore) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam) @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeScore)
-                        @if (scheduledGame.IsOnRadio)
-                        {
-                            <span>(@scheduledGame.RadioStation)</span>
-                        }
-                    </span>
-                }
-                else if (scheduledGame.InningsPlayed == -1)
-                {
-                    <span style="color:blue;">
-                        @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam)
-                        @if (scheduledGame.IsOnRadio)
-                        {
-                            <span>(@scheduledGame.RadioStation) - PPD</span>
-                        }
-                        else
-                        {
-                            <span> - PPD</span>
-                        }
-                    </span>
-                }
-                else
-                {
-                    <span>
-                        @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam)
-                        @if (scheduledGame.ScheduledDate.Hour > 0 && scheduledGame.ScheduledDate.Hour != 19) // 19 is for the 7:30PM regular games
-                        {
-                            var postfix = "AM";
-                            var hour = scheduledGame.ScheduledDate.Hour;
-                            if (hour >= 12)
+                <div style="text-align:center;">
+                    @if (scheduledGame.PlayedDate.HasValue)
+                    {
+                        <span style="color:red;">
+                            @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayScore) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam) @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeScore)
+                            @if (scheduledGame.IsOnRadio)
                             {
-                                postfix = "PM";
+                                <span>(@scheduledGame.RadioStation)</span>
                             }
-                            if (hour > 12)
+                        </span>
+                    }
+                    else if (scheduledGame.InningsPlayed == -1)
+                    {
+                        <span style="color:blue;">
+                            @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam)
+                            @if (scheduledGame.IsOnRadio)
                             {
-                                hour = hour - 12;
-                            }
-                            if (scheduledGame.ScheduledDate.Minute == 0)
-                            {
-                                <span>(@hour @postfix)</span>
+                                <span>(@scheduledGame.RadioStation) - PPD</span>
                             }
                             else
                             {
-                                <span>(@hour:@scheduledGame.ScheduledDate.Minute @postfix)</span>
+                                <span> - PPD</span>
                             }
-                        }
-                        @if (scheduledGame.IsOnRadio)
-                        {
-                            <span>(@scheduledGame.RadioStation)</span>
-                        }
-                    </span>
-                }
-            </div>
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            @Html.DisplayFor(modelscheduledGame => scheduledGame.AwayTeam) @@ @Html.DisplayFor(modelscheduledGame => scheduledGame.HomeTeam)
+                            @if (scheduledGame.ScheduledDate.Hour > 0 && scheduledGame.ScheduledDate.Hour != 19) // 19 is for the 7:30PM regular games
+                            {
+                                var postfix = "AM";
+                                var hour = scheduledGame.ScheduledDate.Hour;
+                                if (hour >= 12)
+                                {
+                                    postfix = "PM";
+                                }
+                                if (hour > 12)
+                                {
+                                    hour = hour - 12;
+                                }
+                                if (scheduledGame.ScheduledDate.Minute == 0)
+                                {
+                                    <span>(@hour @postfix)</span>
+                                }
+                                else
+                                {
+                                    <span>(@hour:@scheduledGame.ScheduledDate.Minute @postfix)</span>
+                                }
+                            }
+                            @if (scheduledGame.IsOnRadio)
+                            {
+                                <span>(@scheduledGame.RadioStation)</span>
+                            }
+                        </span>
+                    }
+                </div>
 
-            scheduledDate = scheduledGame.ScheduledDate;
-        }
+                scheduledDate = scheduledGame.ScheduledDate;
+            }
+        </div>
 
         @*<br />
         <div style="text-decoration:underline;text-align:center;"><strong>District 6A Tournament - Times & Locations TBD</strong></div>
@@ -104,9 +108,7 @@
         <br />
         <div>
             <div style="text-decoration:underline;text-align:center;"><strong>District 6B Tournament - Wynot</strong></div>
-            @*<div style="text-align:center;">Thursday, July 25 - Saturday, August 3</div>*@
             <div style="text-decoration:underline;text-align:center;"><strong>Thursday, July 25</strong></div>
-            @*<div style="text-align:center;"><span></span></div>*@
             <div style="text-align:center;"><span>G1 #1 Crofton vs #8 Freeman (6PM)</span></div>
             <div style="text-align:center;"><span>G2 #4 Lesterville vs #5 Menno (8PM)</span></div>
         </div>
@@ -116,6 +118,40 @@
             <div style="text-decoration:underline;text-align:center;"><strong>Friday, July 26</strong></div>
             <div style="text-align:center;"><span>G3 #3 Wynot vs #6 Irene (6PM)</span></div>
             <div style="text-align:center;"><span>G4 #2 Tabor vs #7 Scotland (8PM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div style="text-decoration:underline;text-align:center;"><strong>Sunday, July 28</strong></div>
+            <div style="text-align:center;"><span>G5 Loser Game 1 vs Loser Game 2 (5PM)</span></div>
+            <div style="text-align:center;font-style:italic;font-weight:bold;font-size:85%;"><span>Loser is eliminated</span></div>
+            <div style="text-align:center;"><span>G6 Loser Game 3 vs Loser Game 4 (7PM)</span></div>
+            <div style="text-align:center;font-style:italic;font-weight:bold;font-size:85%;"><span>Loser is eliminated</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div style="text-decoration:underline;text-align:center;"><strong>Tuesday, July 30</strong></div>
+            <div style="text-align:center;"><span>G7 Winner Game 1 vs Winner Game 2 (6PM)</span></div>
+            <div style="text-align:center;"><span>G8 Winner Game 3 vs Winner Game 4 (8PM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div style="text-decoration:underline;text-align:center;"><strong>Thursday, August 1</strong></div>
+            <div style="text-align:center;"><span>G9 Winner Game 5 vs Loser Game 8 (6PM)</span></div>
+            <div style="text-align:center;font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is Rep #2 or #3, depending on seed</span></div>
+            <div style="text-align:center;"><span>G10 Winner Game 6 vs Loser Game 7 (8PM)</span></div>
+            <div style="text-align:center;font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is Rep #2 or #3, depending on seed</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div style="text-decoration:underline;text-align:center;"><strong>Saturday, August 3</strong></div>
+            <div style="text-align:center;"><span>G11 Loser Game 9 vs Loser Game 10 (5PM)</span></div>
+            <div style="text-align:center;font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is Rep #4, Loser is eliminated</span></div>
+            <div style="text-align:center;"><span>G12 Winner Game 7 vs Winner Game 8 (7PM)</span></div>
+            <div style="text-align:center;font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is District Champ, Loser is Rep #1</span></div>
         </div>
 
         <br />
@@ -130,3 +166,19 @@
         </div>
     </div>
 </div>
+
+<script src="/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.btn-toggle-reg-szn').click(function () {
+            $('.scl-regular-season-container').slideToggle("fast");
+            var btnToggleButton = $('.btn-toggle-reg-szn');
+            var btnText = btnToggleButton.text();
+            if (btnText === "Show Regular Season") {
+                btnToggleButton.text("Hide Regular Season");
+            } else {
+                btnToggleButton.text("Show Regular Season");
+            }
+        });
+    });
+</script>
