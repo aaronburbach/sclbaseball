@@ -30,7 +30,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ScheduledDate) - @Html.DisplayFor(modelItem => item.HomeTeam) @@ @Html.DisplayFor(modelItem => item.AwayTeam)
+                    @Html.ActionLink($"{item.ScheduledDate} - {item.AwayTeam} @ {item.HomeTeam}", "Edit", new { id = item.Id })
                 </td>
             </tr>
         }
