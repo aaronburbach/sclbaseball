@@ -8,6 +8,8 @@ using SclBaseball.Models;
 using SclBaseball.ViewModels;
 using SclBaseball.Logic.Interfaces;
 using SclBaseball.Logic.Services;
+using System.Net;
+using System.Data.Entity.Infrastructure;
 
 namespace SclBaseball.Controllers
 {

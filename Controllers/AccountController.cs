@@ -329,8 +329,14 @@ namespace SclBaseball.Controllers
                 return RedirectToAction("Login");
             }
 
+            //TODO: Temp hack to only allow myself to authenticate via Google, until I get roles in place...
+            if (loginInfo.Email != System.Configuration.ConfigurationManager.AppSettings["MyEmailAddress"])
+            {
+                return View("ExternalLoginFailure");
+            }
+
             // Sign in the user with this external login provider if the user already has a login
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+                var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
             {
                 case SignInStatus.Success:

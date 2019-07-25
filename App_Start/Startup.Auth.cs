@@ -58,11 +58,13 @@ namespace SclBaseball
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = System.Configuration.ConfigurationManager.AppSettings["GoogleOAuth2AuthenticationOptions.ClientId"],
+                ClientSecret = System.Configuration.ConfigurationManager.AppSettings["GoogleOAuth2AuthenticationOptions.ClientSecret"],
+                Provider = new GoogleOAuth2AuthenticationProvider(),
+                CallbackPath = new PathString("/Account/ExternalLoginCallback")
+            });
         }
     }
 }
