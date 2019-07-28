@@ -217,6 +217,7 @@
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Logic\Interfaces\IGameService.cs" />
     <Compile Include="Logic\Services\GameService.cs" />
+    <Compile Include="Logic\Shared\Enums.cs" />
     <Compile Include="Migrations\201804242042407_InitialCreate.cs" />
     <Compile Include="Migrations\201804242042407_InitialCreate.Designer.cs">
       <DependentUpon>201804242042407_InitialCreate.cs</DependentUpon>

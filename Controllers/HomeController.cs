@@ -8,7 +8,6 @@ using System.Web.Mvc;
 namespace SclBaseball.Controllers
 {
     [RequireHttps]
-    //[RequireSsl]
     public class HomeController : Controller
     {
         public ActionResult Index()

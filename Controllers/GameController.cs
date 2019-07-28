@@ -8,8 +8,10 @@ using SclBaseball.Models;
 using SclBaseball.ViewModels;
 using SclBaseball.Logic.Interfaces;
 using SclBaseball.Logic.Services;
+using SclBaseball.Logic.Shared;
 using System.Net;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity;
 
 namespace SclBaseball.Controllers
 {
@@ -24,6 +26,8 @@ namespace SclBaseball.Controllers
             _gameService = new GameService();
         }
 
+        [HttpGet]
+        [Authorize]
         public ActionResult Index(string searchString)
         {
             var games = _gameService.GetGames(searchString);
@@ -33,7 +37,9 @@ namespace SclBaseball.Controllers
 
         public ActionResult Schedule()
         {
-            var games = _gameService.GetGames();
+            var games = _gameService.GetGames()
+                .Where(g => g.Type == Enums.GameType.League)
+                .ToList();
 
             var scheduledGames = new List<GameViewModel>();
 
@@ -51,7 +57,7 @@ namespace SclBaseball.Controllers
                     CreatedDate = g.CreatedDate,
                     IsOnRadio = g.IsOnRadio,
                     RadioStation = g.RadioStation,
-                    IsLeagueGame = g.IsLeagueGame,
+                    Type = g.Type,
                     GameClass = DetermineGameClass(g)
                 }));
             }
@@ -168,19 +174,20 @@ namespace SclBaseball.Controllers
         }
 
         // GET: Games1/Details/5
+        [HttpGet]
+        [Authorize]
         public ActionResult Details(int? id)
         {
-            return new HttpNotFoundResult();
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Game game = db.Games.Find(id);
-            //if (game == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(game);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Game game = db.Games.Find(id);
+            if (game == null)
+            {
+                return HttpNotFound();
+            }
+            return View(game);
         }
 
         // GET: Games1/Create
@@ -188,8 +195,7 @@ namespace SclBaseball.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            return new HttpNotFoundResult();
-            //return View();
+            return View();
         }
 
         // POST: Games1/Create
@@ -198,24 +204,23 @@ namespace SclBaseball.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ScheduledDate,PlayedDate,InningsPlayed,HomeTeam,HomeScore,AwayTeam,AwayScore,Location,CreatedDate,IsOnRadio,RadioStation,IsLeagueGame")] Game game)
+        public ActionResult Create([Bind(Include = "ScheduledDate,PlayedDate,InningsPlayed,HomeTeam,HomeScore,AwayTeam,AwayScore,Location,CreatedDate,IsOnRadio,RadioStation,Type")] Game game)
         {
-            return new HttpNotFoundResult();
-            //try
-            //{
-            //    if (ModelState.IsValid)
-            //    {
-            //        db.Games.Add(game);
-            //        db.SaveChanges();
-            //        return RedirectToAction("Index");
-            //    }
-            //}
-            //catch (RetryLimitExceededException /* dex */)
-            //{
-            //    //TODO: Log the error (uncomment dex variable name and add a line here to write a log.
-            //    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            //}
-            //return View(game);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Games.Add(game);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //TODO: Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return View(game);
         }
 
         // GET: Games1/Edit/5
@@ -223,17 +228,16 @@ namespace SclBaseball.Controllers
         [Authorize]
         public ActionResult Edit(int? id)
         {
-            return new HttpNotFoundResult();
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Game game = db.Games.Find(id);
-            //if (game == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(game);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Game game = db.Games.Find(id);
+            if (game == null)
+            {
+                return HttpNotFound();
+            }
+            return View(game);
         }
 
         // POST: Games1/Edit/5
@@ -244,30 +248,29 @@ namespace SclBaseball.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(int? id)
         {
-            return new HttpNotFoundResult();
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //var gameToUpdate = db.Games.Find(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var gameToUpdate = db.Games.Find(id);
 
-            //// As a best practice to prevent overposting, the fields that you want to be updateable by the Edit page are whitelisted in the TryUpdateModel parameters.
-            //// Currently there are no extra fields that you're protecting, but listing the fields that you want the model binder to bind ensures that if you add fields to the data model in the future, they're automatically protected until you explicitly add them here.
-            //if (TryUpdateModel(gameToUpdate, "", new string[] { "ScheduledDate", "PlayedDate", "InningsPlayed", "HomeTeam", "HomeScore", "AwayTeam", "AwayScore", "Location", "CreatedDate", "IsOnRadio", "RadioStation", "IsLeagueGame" }))
-            //{
-            //    try
-            //    {
-            //        db.SaveChanges();
+            // As a best practice to prevent overposting, the fields that you want to be updateable by the Edit page are whitelisted in the TryUpdateModel parameters.
+            // Currently there are no extra fields that you're protecting, but listing the fields that you want the model binder to bind ensures that if you add fields to the data model in the future, they're automatically protected until you explicitly add them here.
+            if (TryUpdateModel(gameToUpdate, "", new string[] { "ScheduledDate", "PlayedDate", "InningsPlayed", "HomeTeam", "HomeScore", "AwayTeam", "AwayScore", "Location", "CreatedDate", "IsOnRadio", "RadioStation", "Type" }))
+            {
+                try
+                {
+                    db.SaveChanges();
 
-            //        return RedirectToAction("Index");
-            //    }
-            //    catch (RetryLimitExceededException /* dex */)
-            //    {
-            //        //Log the error (uncomment dex variable name and add a line here to write a log.
-            //        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-            //    }
-            //}
-            //return View(gameToUpdate);
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(gameToUpdate);
         }
 
         // GET: Games1/Delete/5
@@ -275,21 +278,20 @@ namespace SclBaseball.Controllers
         [Authorize]
         public ActionResult Delete(int? id, bool? saveChangesError = false)
         {
-            return new HttpNotFoundResult();
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //if (saveChangesError.GetValueOrDefault())
-            //{
-            //    ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
-            //}
-            //Game game = db.Games.Find(id);
-            //if (game == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(game);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
+            }
+            Game game = db.Games.Find(id);
+            if (game == null)
+            {
+                return HttpNotFound();
+            }
+            return View(game);
         }
 
         // POST: Games1/Delete/5
@@ -298,19 +300,18 @@ namespace SclBaseball.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            return new HttpNotFoundResult();
-            //try
-            //{
-            //    Game gameToDelete = new Game() { Id = id };
-            //    db.Entry(gameToDelete).State = EntityState.Deleted;
-            //    db.SaveChanges();
-            //}
-            //catch (RetryLimitExceededException /* dex */)
-            //{
-            //    //TODO: Log the error (uncomment dex variable name and add a line here to write a log.
-            //    return RedirectToAction("Delete", new { id = id, saveChangesError = true });
-            //}
-            //return RedirectToAction("Index");
+            try
+            {
+                Game gameToDelete = new Game() { Id = id };
+                db.Entry(gameToDelete).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //TODO: Log the error (uncomment dex variable name and add a line here to write a log.
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

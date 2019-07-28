@@ -14,6 +14,7 @@ namespace SclBaseball.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer<GameContext>(null);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }
