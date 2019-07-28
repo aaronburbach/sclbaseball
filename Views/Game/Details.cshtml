@@ -100,16 +100,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsLeagueGame)
+            @Html.DisplayNameFor(model => model.Type)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsLeagueGame)
+            @Html.DisplayFor(model => model.Type)
         </dd>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

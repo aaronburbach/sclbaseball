@@ -1,7 +1,7 @@
 ﻿using SclBaseball.Migrations;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
+using SclBaseball.Logic.Shared;
 
 namespace SclBaseball.Models
 {
@@ -40,6 +40,6 @@ namespace SclBaseball.Models
 
         public string RadioStation { get; set; }
 
-        public bool IsLeagueGame { get; set; }
+        public Enums.GameType Type { get; set; }
     }
 }
