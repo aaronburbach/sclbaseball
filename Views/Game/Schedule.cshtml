@@ -14,9 +14,9 @@
 </div>
 <div class="row">
     <div class="col-lg-12 text-center">
-        <div><span><button type="button" class="btn btn-danger btn-toggle-reg-szn">Show Regular Season</button></span></div>
+        @*<div><span><button type="button" class="btn btn-danger btn-toggle-reg-szn">Show Regular Season</button></span></div>*@
 
-        <div class="scl-regular-season-container" style="display:none;">
+        <div class="scl-regular-season-container"> @*style="display:none;">*@
             @foreach (var scheduledDate in Model)
             {
                 <br />
@@ -41,51 +41,8 @@
 
         <br />
         <div>
-            <div class="scheduled-game-header"><strong>District 6B Tournament - Wynot</strong></div>
-            <div class="scheduled-game-header game-played"><strong>Thursday, July 25</strong></div>
-            <div class="scheduled-game"><span class="game-played">G1 #1 Crofton 5 vs #8 Freeman 6 (6PM)</span></div>
-            <div class="scheduled-game"><span class="game-played">G2 #4 Lesterville 7 vs #5 Menno 12 (8PM)</span></div>
-        </div>
-
-        <br />
-        <div>
-            <div class="scheduled-game-header game-played"><strong>Friday, July 26</strong></div>
-            <div class="scheduled-game"><span class="game-played">G3 #3 Wynot 12 vs #6 Irene 5 (6PM)</span></div>
-            <div class="scheduled-game"><span class="game-played">G4 #2 Tabor 9 vs #7 Scotland 0 (8PM)</span></div>
-        </div>
-
-        <br />
-        <div>
-            <div class="scheduled-game-header"><strong>Sunday, July 28</strong></div>
-            <div class="scheduled-game"><span>G5 #1 Crofton vs #4 Lesterville (5PM)</span></div>
-            <div class="scheduled-game" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Loser is eliminated</span></div>
-            <div class="scheduled-game"><span>G6 #6 Irene vs #7 Scotland (7PM)</span></div>
-            <div class="scheduled-game" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Loser is eliminated</span></div>
-        </div>
-
-        <br />
-        <div>
-            <div class="scheduled-game-header"><strong>Tuesday, July 30</strong></div>
-            <div class="scheduled-game"><span>G7 #8 Freeman vs #5 Menno (6PM)</span></div>
-            <div class="scheduled-game"><span>G8 #3 Wynot vs #2 Tabor (8PM)</span></div>
-        </div>
-
-        <br />
-        <div>
-            <div class="scheduled-game-header"><strong>Thursday, August 1</strong></div>
-            <div class="scheduled-game"><span>G9 Winner Game 5 vs Loser Game 8 (6PM)</span></div>
-            <div class="scheduled-game" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is Rep #2 or #3, depending on seed</span></div>
-            <div class="scheduled-game"><span>G10 Winner Game 6 vs Loser Game 7 (8PM)</span></div>
-            <div class="scheduled-game" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is Rep #2 or #3, depending on seed</span></div>
-        </div>
-
-        <br />
-        <div>
-            <div class="scheduled-game-header"><strong>Saturday, August 3</strong></div>
-            <div class="scheduled-game"><span>G11 Loser Game 9 vs Loser Game 10 (5PM)</span></div>
-            <div class="scheduled-game" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is Rep #4, Loser is eliminated</span></div>
-            <div class="scheduled-game"><span>G12 Winner Game 7 vs Winner Game 8 (7PM)</span></div>
-            <div class="scheduled-game" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is District Champ, Loser is Rep #1</span></div>
+            <div class="scheduled-game-header"><strong>District 6B Tournament - Menno</strong></div>
+            <div class="scheduled-game">Thursday, July 23 - Saturday, August 1</div>
         </div>
 
         <br />
@@ -96,7 +53,7 @@
         <br />
         <div>
             <div class="scheduled-game-header"><strong>Class B State Tournament - Mitchell</strong></div>
-            <div class="scheduled-game">Wednesday, August 7 - Sunday, August 18</div>
+            <div class="scheduled-game">Wednesday, August 5 - Sunday, August 16</div>
         </div>
     </div>
 </div>

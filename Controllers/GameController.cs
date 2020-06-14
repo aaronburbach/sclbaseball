@@ -45,7 +45,8 @@ namespace SclBaseball.Controllers
 
             if (games.Count > 0)
             {
-                games.ForEach(g => scheduledGames.Add(new GameViewModel {
+                games.ForEach(g => scheduledGames.Add(new GameViewModel
+                {
                     ScheduledDate = g.ScheduledDate,
                     PlayedDate = g.PlayedDate,
                     InningsPlayed = g.InningsPlayed,
@@ -67,7 +68,7 @@ namespace SclBaseball.Controllers
                 .ToDictionary(g => g.Key, g => g.ToList());
 
             var schedule = new List<ScheduleViewModel>();
-                       
+
             foreach (KeyValuePair<DateTime, List<GameViewModel>> entry in gamesDictionary)
             {
                 schedule.Add(new ScheduleViewModel
@@ -77,7 +78,7 @@ namespace SclBaseball.Controllers
                     HeaderClass = entry.Value.Any(g => g.PlayedDate.HasValue) ? "game-played" : ""
                 });
             }
-            
+
             return View(schedule);
         }
 
@@ -106,7 +107,8 @@ namespace SclBaseball.Controllers
                 { "Scotland", null },
                 { "Tabor", null },
                 { "Wynot", null },
-                { "Yankton", null }
+                { "Yankton Lakers", null },
+                { "Yankton Tappers", null }
             };
 
             var keys = new List<string>(results.Keys);
@@ -167,7 +169,7 @@ namespace SclBaseball.Controllers
             standings = standings.OrderBy(s => s.GamesBehind).ThenByDescending(s => s.Percentage).ThenByDescending(s => s.TotalWins).ThenBy(s => s.TotalLosses)
                 .ThenBy(s => s.Team.StartsWith("Wynot") ? 1 : 2) // Icky 2019 final standings hack
                 .ThenBy(s => s.Team.StartsWith("Scotland") ? 1 : 2) // Icky 2019 final standings hack
-                //.ThenBy(s => s.Team)
+                                                                    //.ThenBy(s => s.Team)
                 .ToList();
 
             return View(standings);
