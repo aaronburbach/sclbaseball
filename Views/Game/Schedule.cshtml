@@ -14,7 +14,9 @@
 </div>
 <div class="row">
     <div class="col-lg-12 text-center">
-        @*<div><span><button type="button" class="btn btn-danger btn-toggle-reg-szn">Show Regular Season</button></span></div>*@
+        @*<div><span><button type="button" class="btn btn-danger btn-toggle-reg-szn">Show Regular Season</button></span></div>
+        <div><span>&nbsp;</span></div>
+        <div><span><button type="button" class="btn btn-danger btn-toggle-districts">Show District Results</button></span></div>*@
 
         <div class="scl-regular-season-container"> @*style="display:none;">*@
             @foreach (var scheduledDate in Model)
@@ -22,7 +24,7 @@
                 <br />
                 @*@game.GameClass*@
                 <div class="scheduled-game-header @scheduledDate.HeaderClass"><strong>@scheduledDate.ScheduledDate.ToString("dddd, MMMM dd")</strong></div>
-                
+
                 foreach (var game in scheduledDate.ScheduledGames)
                 {
                     <div class="scheduled-game">
@@ -34,26 +36,54 @@
             }
         </div>
 
+        <div class="scl-districts-container"> @*style="display:none;">*@
+            <br />
+            <div>
+                <div class="scheduled-game-header"><strong>District 6A Tournament - TBD</strong></div>
+                <div class="scheduled-game-date">Dates/Times TBD</div>
+                @*<div class="scheduled-game"><span class="game-played">G1 vs  (7:30PM)</span></div>*@
+            </div>
+
+            @*<br />
+            <div>
+                <div class="scheduled-game-header"><strong>District 6B Tournament - Menno</strong></div>
+                <div class="scheduled-game">Thursday, July 23 - Saturday, August 1</div>
+            </div>*@
+
+            <br />
+            <div>
+                <div class="scheduled-game-header"><strong>District 6B Tournament - Tabor</strong></div>
+                <div class="scheduled-game-date">Thursday, July 22 - Saturday, July 31</div>
+                @*<div class="scheduled-game"><span class="game-played">G1 #1 vs #8 (6PM)</span></div>
+                <div class="scheduled-game"><span class="game-played">G2 #4 vs #5 (8PM)</span></div>*@
+            </div>
+        </div>
+
+        @*<br />
+        <div>
+            <div class="scheduled-game-header"><strong><a href="~/postseason">View the Full Brackets</a></strong></div>
+        </div>*@
+
         <br />
         <div>
-            <div class="scheduled-game-header"><strong>District 6A Tournament - TBD</strong></div>
+            <div class="scheduled-game-header"><strong>Class A State Tournament - 1st Round - TBD</strong></div>
+            <div class="scheduled-game-date">Dates/Times TBD</div>
+            @*<div class="scheduled-game"><span class="game-played"> vs  (8PM)</span></div>*@
         </div>
 
         <br />
         <div>
-            <div class="scheduled-game-header"><strong>District 6B Tournament - Menno</strong></div>
-            <div class="scheduled-game">Thursday, July 23 - Saturday, August 1</div>
-        </div>
-
-        <br />
-        <div>
-            <div class="scheduled-game-header"><strong>Class A State Tournament - TBD</strong></div>
+            <div class="scheduled-game-header"><strong>Class A State Tournament - Second Round - Mitchell</strong></div>
+            <div class="scheduled-game-date">Friday, August 13 - Sunday, August 15</div>
+            @*<div class="scheduled-game"><span class="game-played"> vs  (3:30PM)</span></div>*@
         </div>
 
         <br />
         <div>
             <div class="scheduled-game-header"><strong>Class B State Tournament - Mitchell</strong></div>
-            <div class="scheduled-game">Wednesday, August 5 - Sunday, August 16</div>
+            <div class="scheduled-game-date">Wednesday, August 4 - Sunday, August 15</div>
+            @*<div class="scheduled-game"><span class="game-played"> vs (11AM)</span></div>
+            <div class="scheduled-game"><span class="game-played"> vs (1PM)</span></div>*@
         </div>
     </div>
 </div>
@@ -69,6 +99,17 @@
                 btnToggleButton.text("Hide Regular Season");
             } else {
                 btnToggleButton.text("Show Regular Season");
+            }
+        });
+
+        $('.btn-toggle-districts').click(function () {
+            $('.scl-districts-container').slideToggle("fast");
+            var btnToggleButton = $('.btn-toggle-districts');
+            var btnText = btnToggleButton.text();
+            if (btnText === "Show District Results") {
+                btnToggleButton.text("Hide District Results");
+            } else {
+                btnToggleButton.text("Show District Results");
             }
         });
     });

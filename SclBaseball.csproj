@@ -240,6 +240,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\2020_SD_Amateur_Class_A_State_Tourney_Bracket.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\images\sclbaseball_logo.png" />
     <Content Include="Data\BackupTable.txt" />
     <Content Include="favicon.ico" />

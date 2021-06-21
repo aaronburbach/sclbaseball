@@ -63,7 +63,7 @@ namespace SclBaseball.Controllers
                 }));
             }
 
-            var gamesDictionary = scheduledGames.GroupBy(g => g.ScheduledDate)
+            var gamesDictionary = scheduledGames.GroupBy(g => g.ScheduledDate.Date)
                 .OrderBy(g => g.Key.DayOfYear)
                 .ToDictionary(g => g.Key, g => g.ToList());
 
@@ -104,7 +104,7 @@ namespace SclBaseball.Controllers
                 { "Irene", null },
                 { "Lesterville", null },
                 { "Menno", null },
-                { "Scotland", null },
+                //{ "Scotland", null },
                 { "Tabor", null },
                 { "Wynot", null },
                 { "Yankton Lakers", null },
@@ -138,6 +138,7 @@ namespace SclBaseball.Controllers
                     Team = result.Key,
                     TotalWins = teamHomeWins + teamHomeLosses,
                     TotalLosses = teamAwayWins + teamAwayLosses,
+                    // Should this be TotalWins + TotalLosses?
                     Percentage = teamGamesPlayed > 0 ? (decimal)(teamHomeWins + teamHomeLosses) / teamGamesPlayed : 0.00m,
                     GamesBehind = 0.00m,
                     HomeWins = teamHomeWins,
@@ -167,8 +168,11 @@ namespace SclBaseball.Controllers
 
             // Now order for presentation.
             standings = standings.OrderBy(s => s.GamesBehind).ThenByDescending(s => s.Percentage).ThenByDescending(s => s.TotalWins).ThenBy(s => s.TotalLosses)
-                .ThenBy(s => s.Team.StartsWith("Wynot") ? 1 : 2) // Icky 2019 final standings hack
-                .ThenBy(s => s.Team.StartsWith("Scotland") ? 1 : 2) // Icky 2019 final standings hack
+                //.ThenBy(s => s.Team.StartsWith("Wynot") ? 1 : 2) // Icky 2019 final standings hack
+                //.ThenBy(s => s.Team.StartsWith("Scotland") ? 1 : 2) // Icky 2019 final standings hack
+                //                                                    //.ThenBy(s => s.Team)
+                .ThenBy(s => s.Team.StartsWith("Tabor") ? 1 : 2) // Icky 2020 final standings hack
+                .ThenBy(s => s.Team.StartsWith("Menno") ? 1 : 2) // Icky 2020 final standings hack
                                                                     //.ThenBy(s => s.Team)
                 .ToList();
 
@@ -248,13 +252,23 @@ namespace SclBaseball.Controllers
         [HttpPost, ActionName("Edit")]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(int? id)
+        public ActionResult EditPost(Game game)
         {
-            if (id == null)
+            if (game?.Id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var gameToUpdate = db.Games.Find(id);
+            var gameToUpdate = db.Games.Find(game.Id);
+
+            var playedDate = game.PlayedDate;
+            if (playedDate.HasValue)
+            {
+                gameToUpdate.PlayedDate = new DateTime(playedDate.Value.Year, playedDate.Value.Month, playedDate.Value.Day, playedDate.Value.Hour, playedDate.Value.Minute, 0, 0);
+            }
+            var createdDate = game.CreatedDate;
+            gameToUpdate.CreatedDate = new DateTime(createdDate.Year, createdDate.Month, createdDate.Day, createdDate.Hour, createdDate.Minute, 0, 0);
+            var scheduledDate = game.ScheduledDate;
+            gameToUpdate.ScheduledDate = new DateTime(scheduledDate.Year, scheduledDate.Month, scheduledDate.Day, scheduledDate.Hour, scheduledDate.Minute, 0, 0);
 
             // As a best practice to prevent overposting, the fields that you want to be updateable by the Edit page are whitelisted in the TryUpdateModel parameters.
             // Currently there are no extra fields that you're protecting, but listing the fields that you want the model binder to bind ensures that if you add fields to the data model in the future, they're automatically protected until you explicitly add them here.
