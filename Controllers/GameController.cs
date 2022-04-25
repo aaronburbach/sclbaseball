@@ -101,13 +101,10 @@ namespace SclBaseball.Controllers
             {
                 { "Crofton", null },
                 { "Freeman", null },
-                { "Irene", null },
                 { "Lesterville", null },
                 { "Menno", null },
-                //{ "Scotland", null },
                 { "Tabor", null },
                 { "Wynot", null },
-                { "Yankton Lakers", null },
                 { "Yankton Tappers", null }
             };
 
@@ -171,9 +168,9 @@ namespace SclBaseball.Controllers
                 //.ThenBy(s => s.Team.StartsWith("Wynot") ? 1 : 2) // Icky 2019 final standings hack
                 //.ThenBy(s => s.Team.StartsWith("Scotland") ? 1 : 2) // Icky 2019 final standings hack
                 //                                                    //.ThenBy(s => s.Team)
-                .ThenBy(s => s.Team.StartsWith("Tabor") ? 1 : 2) // Icky 2020 final standings hack
-                .ThenBy(s => s.Team.StartsWith("Menno") ? 1 : 2) // Icky 2020 final standings hack
-                                                                    //.ThenBy(s => s.Team)
+                //.ThenBy(s => s.Team.StartsWith("Tabor") ? 1 : 2) // Icky 2020 final standings hack
+                //.ThenBy(s => s.Team.StartsWith("Menno") ? 1 : 2) // Icky 2020 final standings hack
+                //                                                    //.ThenBy(s => s.Team)
                 .ToList();
 
             return View(standings);

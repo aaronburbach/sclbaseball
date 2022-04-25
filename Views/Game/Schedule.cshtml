@@ -40,22 +40,13 @@
             <br />
             <div>
                 <div class="scheduled-game-header"><strong>District 6A Tournament - TBD</strong></div>
-                <div class="scheduled-game-date">Dates/Times TBD</div>
-                @*<div class="scheduled-game"><span class="game-played">G1 vs  (7:30PM)</span></div>*@
+                <div class="scheduled-game-date"><strong>Dates/Times TBD</strong></div>
             </div>
-
-            @*<br />
-            <div>
-                <div class="scheduled-game-header"><strong>District 6B Tournament - Menno</strong></div>
-                <div class="scheduled-game">Thursday, July 23 - Saturday, August 1</div>
-            </div>*@
 
             <br />
             <div>
-                <div class="scheduled-game-header"><strong>District 6B Tournament - Tabor</strong></div>
-                <div class="scheduled-game-date">Thursday, July 22 - Saturday, July 31</div>
-                @*<div class="scheduled-game"><span class="game-played">G1 #1 vs #8 (6PM)</span></div>
-                <div class="scheduled-game"><span class="game-played">G2 #4 vs #5 (8PM)</span></div>*@
+                <div class="scheduled-game-header"><strong>District 6B Tournament - TBD</strong></div>
+                <div class="scheduled-game-date"><strong>Thursday, July 21 - Saturday, July 30</strong></div>
             </div>
         </div>
 
@@ -67,25 +58,61 @@
         <br />
         <div>
             <div class="scheduled-game-header"><strong>Class A State Tournament - 1st Round - TBD</strong></div>
-            <div class="scheduled-game-date">Dates/Times TBD</div>
-            @*<div class="scheduled-game"><span class="game-played"> vs  (8PM)</span></div>*@
+            <div class="scheduled-game-date"><strong>Dates/Times TBD</strong></div>
         </div>
+
+        @*<br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Sunday, August 8</strong></div>
+            <div class="scheduled-game"><span class="game-played">Yankton 2 vs Black Hills A's 4 (11AM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Yankton is eliminated</span></div>
+        </div>*@
 
         <br />
         <div>
             <div class="scheduled-game-header"><strong>Class A State Tournament - Second Round - Mitchell</strong></div>
-            <div class="scheduled-game-date">Friday, August 13 - Sunday, August 15</div>
-            @*<div class="scheduled-game"><span class="game-played"> vs  (3:30PM)</span></div>*@
+            <div class="scheduled-game-date"><strong>Friday, August 12 - Sunday, August 14</strong></div>
         </div>
 
         <br />
         <div>
             <div class="scheduled-game-header"><strong>Class B State Tournament - Mitchell</strong></div>
-            <div class="scheduled-game-date">Wednesday, August 4 - Sunday, August 15</div>
-            @*<div class="scheduled-game"><span class="game-played"> vs (11AM)</span></div>
-            <div class="scheduled-game"><span class="game-played"> vs (1PM)</span></div>*@
+            <div class="scheduled-game-date"><strong>Wednesday, August 3 - Sunday, August 14</strong></div>
+            @*<div class="scheduled-game"><span class="game-played">Menno 10 vs Redfield DQ 8 (11AM)</span></div>
+            <div class="scheduled-game"><span class="game-played">Tabor 4 vs Flandreau 9 (7:30PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Tabor is eliminated</span></div>*@
         </div>
-    </div>
+
+        @*<br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Friday, August 6</strong></div>
+            <div class="scheduled-game"><span class="game-played">Crofton 2 vs Volga 3 (1PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Crofton is eliminated</span></div>
+            <div class="scheduled-game"><span class="game-played">Wynot 9 vs Four Corners 2 (5:30PM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Saturday, August 7</strong></div>
+            <div class="scheduled-game"><span class="game-played">Lesterville 6 vs Dell Rapids PBR 5 (11AM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Sunday, August 8</strong></div>
+            <div class="scheduled-game"><span class="game-played">Menno 3 vs Plankinton Bankers 13 (7:30PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Menno is eliminated</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Tuesday, August 10</strong></div>
+            <div class="scheduled-game"><span class="game-played">Wynot 5 vs Dell Rapids Mudcats 13 (5:30PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Wynot is eliminated</span></div>
+            <div class="scheduled-game"><span class="game-played">Lesterville 2 vs Larchwood 3 (7:30PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Lesterville is eliminated</span></div>
+        </div>
+    </div>*@
 </div>
 
 <script src="/Scripts/jquery-1.10.2.min.js"></script>
@@ -112,5 +139,8 @@
                 btnToggleButton.text("Show District Results");
             }
         });
+
+        // TODO: Look at doing this with an animation, to scroll to the most recently completed games.
+        //document.getElementById('most-recent').scrollIntoView(); 
     });
 </script>
