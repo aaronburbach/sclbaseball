@@ -26,5 +26,6 @@ namespace SclBaseball.ViewModels
         [DisplayFormat(DataFormatString = "{0:#,0.00}")]
         public decimal RunsAllowedPerGame { get; set; }
         public int GamesPlayed { get; set; }
+        public bool IsRegularSeasonComplete { get; set; }
     }
 }

@@ -32,6 +32,7 @@ namespace SclBaseball.ViewModels
             gameText += $"{((HasBeenPlayed && !IsPostponed) ? $"{AwayScore.ToString()} " : "")}";
             gameText += $"@ {HomeTeam} ";
             gameText += $"{((HasBeenPlayed && !IsPostponed) ? $"{HomeScore.ToString()} " : "")}";
+            //gameText += $"({ScheduledDate.ToString("h:mm tt")})";
 
             return gameText;
         }

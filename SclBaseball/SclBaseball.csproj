@@ -250,7 +250,12 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="NotFound.html" />
-    <Content Include="PrivateSettings.config" />
+    <Content Include="Content\pdf\2025_District6BBracket.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\pdf\2025 State Tourney Pickup Players.pdf" />
+    <None Include="Properties\PublishProfiles\SclBaseball - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\SclPublishLocal.pubxml" />
     <None Include="README.md" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

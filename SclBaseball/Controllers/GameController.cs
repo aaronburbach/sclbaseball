@@ -101,16 +101,20 @@ namespace SclBaseball.Controllers
             {
                 { "Crofton", null },
                 { "Freeman", null },
+                { "Irene", null },
                 { "Lesterville", null },
                 { "Menno", null },
                 { "Tabor", null },
                 { "Wynot", null },
-                { "Yankton Tappers", null }
+                //{ "Yankton Tappers", null }
+                { "Yankton Lakers", null }
             };
 
             var keys = new List<string>(results.Keys);
 
             var allGames = _gameService.GetGames();
+
+            ViewBag.IsRegularSeasonComplete = allGames.All(g => g.PlayedDate != null) ? " Final" : "";
 
             foreach (var key in keys)
             {
