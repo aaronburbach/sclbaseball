@@ -254,6 +254,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\pdf\2025 State Tourney Pickup Players.pdf" />
+    <Content Include="Content\pdf\2026_District6BBracket.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\pdf\2026_District6BBracket_orig.pdf" />
     <None Include="Properties\PublishProfiles\SclBaseball - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\SclPublishLocal.pubxml" />
     <None Include="README.md" />

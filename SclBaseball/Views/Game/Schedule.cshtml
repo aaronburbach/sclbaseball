@@ -14,18 +14,19 @@
 </div>
 <div class="row">
     <div class="col-lg-12 text-center">
-        @*<div class="d-flex justify-content-center gap-2">
-            <button type="button" class="btn btn-danger btn-toggle-reg-szn">Show Regular Season</button>
-            <button type="button" class="btn btn-danger btn-toggle-districts">Show District Results</button>
-            <button type="button" class="btn btn-danger btn-toggle-state">Hide State Results</button>
-        </div>*@
+        <div class="d-flex justify-content-center gap-2">
+                <button type="button" class="btn btn-danger btn-toggle-reg-szn">Show Regular Season</button>
+                <button type="button" class="btn btn-danger btn-toggle-districts">Hide District Results</button>
+                <button type="button" class="btn btn-danger btn-toggle-state">Hide State Results</button>
+            </div>
 
-        <div class="scl-regular-season-container"> @*style="display:none;">*@
+        <div class="scl-regular-season-container" style="display:none;">
+            @*style="display:none;">*@
             <div>
                 <div class="scheduled-game-header"><strong>Thursday/Friday Games Scheduled to Start at 7:30PM</strong></div>
                 <div class="scheduled-game-header"><strong>Sunday Games Scheduled to Start at 6PM</strong></div>
                 @*<br>
-                <div class="scheduled-game-header"><span>Radio broadcasts by Classic Hits 106.3FM.</span></div>*@
+                    <div class="scheduled-game-header"><span>Radio broadcasts by Classic Hits 106.3FM.</span></div>*@
             </div>
 
             @foreach (var scheduledDate in Model)
@@ -45,31 +46,31 @@
             }
         </div>
 
-        <div class="scl-districts-container" style="display:none;">
+        <div class="scl-districts-container">
+            @*<br />
+        <div>
+            <div class="scheduled-game-header">
+                <strong>
+                    <a target="_blank" href="http://pbs.twimg.com/media/GxIZxi5WQAA9tYw?format=jpg&name=small">2025 Class A South District Tournament Bracket</a>
+                </strong>
+            </div>
+        </div>*@
             <br />
             <div>
                 <div class="scheduled-game-header">
                     <strong>
-                        <a target="_blank" href="http://pbs.twimg.com/media/GxIZxi5WQAA9tYw?format=jpg&name=small">2025 Class A South District Tournament Bracket</a>
+                        <a target="_blank" href="~/Content/pdf/2026_District6BBracket.pdf">2026 District 6B Tournament Bracket</a>
                     </strong>
                 </div>
             </div>
-            <br />
-            <div>
-                <div class="scheduled-game-header">
-                    <strong>
-                        <a target="_blank" href="~/Content/pdf/2025_District6BBracket.pdf">2025 District 6B Tournament Bracket</a>
-                    </strong>
-                </div>
+            @*<br />
+        <div>
+            <div class="scheduled-game-header">
+                <strong>
+                    <a target="_blank" href="~/Content/pdf/2025 State Tourney Pickup Players.pdf">2025 District 6B Pickup Players</a>
+                </strong>
             </div>
-            <br />
-            <div>
-                <div class="scheduled-game-header">
-                    <strong>
-                        <a target="_blank" href="~/Content/pdf/2025 State Tourney Pickup Players.pdf">2025 District 6B Pickup Players</a>
-                    </strong>
-                </div>
-            </div>
+        </div>*@
             @*<br />
         <div>
             <div class="scheduled-game-header"><strong><a href="~/postseason">View the Full District Brackets</a></strong></div>
@@ -77,136 +78,183 @@
 
             <br />
             <div>
-                <div class="scheduled-game-header game-played"><strong>Class A South District Tournament - Yankton</strong></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Two teams advance to the Class A State Tourney.</span></div>
-
-                <div class="scheduled-game-date game-played"><strong>Friday, August 1</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">G1 #1 Harrisburg 9 vs #4 Mitchell 1 (5:30PM)</span></div>
-                <div class="scheduled-game game-played"><span class="game-played">G2 #2 Yankton 11 vs #3 Sioux Falls Brewers 17 (8PM)</span></div>
+                <div class="scheduled-game-header"><strong>Class A District Tournament - TBD</strong></div>
             </div>
 
             <br />
             <div>
-                <div class="scheduled-game-date game-played"><strong>Saturday, August 2</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">G3 #1 Harrisburg 11 vs #3 Sioux Falls Brewers 1 (1PM)</span></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Harrisburg is South District Champion.</span></div>
-                <div class="scheduled-game game-played"><span class="game-played">G4 #4 Mitchell 1 vs #2 Yankton 9 (4PM)</span></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Mitchell is eliminated.</span></div>
-                <div class="scheduled-game game-played"><span class="game-played">G5 #3 Sioux Falls Brewers 1 vs #2 Yankton 2 (7PM)</span></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Yankton is South District Runner-up. Sioux Falls is eliminated.</span></div>
+                <div class="scheduled-game-header game-played"><strong>District 6B Tournament - Menno, SD</strong></div>
+                <div class="scheduled-game-date game-played"><strong>Friday, July 24</strong></div>
+                <div class="scheduled-game"><span class="game-played">G2 #3 Menno 2 vs #6 Crofton 7 (6PM)</span></div>
+                <div class="scheduled-game"><span class="game-played">G3 #2 Wynot 13 vs #7 Irene 1 (8PM)</span></div>
             </div>
-
             <br />
-            <div>
-                <div class="scheduled-game-header game-played"><strong>District 6B Tournament - Wynot, NE</strong></div>
 
-                <div class="scheduled-game-date game-played"><strong>Thursday, July 24</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">G1 #4 Lesterville 10 vs #5 Crofton 7 (7:30PM)</span></div>
+            <div>
+                <div class="scheduled-game-date game-played"><strong>Sunday, July 26</strong></div>
+                <div class="scheduled-game game-played"><span class="game-played">G1 #4 Lesterville 8 vs #5 Freeman 5 (7PM) - PPD from 7/23</span></div>
             </div>
-
             <br />
+
             <div>
-                <div class="scheduled-game-date game-played"><strong>Friday, July 25</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">G2 #3 Freeman 8 vs #6 Irene 10 (6PM)</span></div>
-                <div class="scheduled-game game-played"><span class="game-played">G3 #2 Wynot 4 vs #7 Menno 0 (8PM)</span></div>
+                <div class="scheduled-game-date game-played"><strong>Monday, July 27</strong></div>
+                <div class="scheduled-game game-played"><span class="game-played">G4 #5 Freeman 6 vs Irene 2 (7PM)</span></div>
+                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Irene is eliminated.</span></div>
             </div>
-
             <br />
+
             <div>
-                <div class="scheduled-game-date game-played"><strong>Sunday, July 27</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">G4 #5 Crofton 13 vs #7 Menno 8 (6PM)</span></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Menno is eliminated.</span></div>
+                <div class="scheduled-game-date game-played"><strong>Tuesday, July 28</strong></div>
+                <div class="scheduled-game game-played"><span class="game-played">G5 #1 Tabor 12 vs #4 Lesterville 2 (6PM)</span></div>
+                <div class="scheduled-game game-played"><span class="game-played">G6 #6 Crofton 5 vs #2 Wynot 7 (8PM)</span></div>
             </div>
-
             <br />
+
             <div>
-                <div class="scheduled-game-date game-played"><strong>Tuesday, July 29</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">G5 #1 Tabor 11 vs #4 Lesterville 8 (6PM)</span></div>
+                <div class="scheduled-game-date"><strong>Thursday, July 30</strong></div>
+                <div class="scheduled-game"><span class="">G7 #3 Menno vs #6 Crofton (6PM)</span></div>
+                <div class="scheduled-game" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is Rep #2 or #3</span></div>
+                <div class="scheduled-game"><span class="">G8 #5 Freeman vs #4 Lesterville (8PM)</span></div>
+                <div class="scheduled-game" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is Rep #2 or #3</span></div>
             </div>
-
             <br />
-            <div>
-                <div class="scheduled-game-date game-played"><strong>Thursday, July 31</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">G8 #5 Crofton 7 vs #4 Lesterville 0 (6PM)</span></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Crofton is Rep #3. Lesterville is eliminated.</span></div>
-                <div class="scheduled-game game-played"><span class="game-played">G6 #6 Irene 3 vs #2 Wynot 6 (8PM)</span></div>
-            </div>
 
-            <br />
             <div>
-                <div class="scheduled-game-date game-played"><strong>Friday, August 1</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">G7 #3 Freeman 9 vs #6 Irene 6 (7:30PM)</span></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Freeman is Rep #2. Irene is eliminated.</span></div>
-            </div>
-
-            <br />
-            <div>
-                <div class="scheduled-game-date game-played"><strong>Saturday, August 2</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">G9 #1 Tabor 17 vs #2 Wynot 7 (7PM)</span></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Tabor is District 6B Champion. Wynot is Rep #1.</span></div>
-            </div>
-        </div>
-
-        <div class="state-tourney-container" style="display:none;">
-
-            <br />
-            <div>
-                <div class="scheduled-game-header"><strong><a href="https://web.gc.com/organizations/t3gQYqGKLtEk/schedule" target="_blank">View the Full Class A Bracket</a></strong></div>
-            </div>
-
-            <br />
-            <div>
-                <div class="scheduled-game-header game-played"><strong>Class A State Tournament - 1st Round - Aberdeen</strong></div>
-                <div class="scheduled-game-date game-played"><strong>Friday, August 8</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">Yankton Lakers 6 vs Brookings Cubs 8 (5:30PM)</span></div>
-            </div>
-
-            <br />
-            <div>
-                <div class="scheduled-game-date game-played"><strong>Saturday, August 9</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">Yankton Lakers 19 vs Black Hills A's 1 (5:30PM)</span></div>
-            </div>
-
-            <br />
-            <div>
-                <div class="scheduled-game-header game-played"><strong>Class A State Tournament - 2nd Round - Brandon & Valley Springs</strong></div>
-                <div class="scheduled-game-date game-played"><strong>Friday, August 15 - Valley Springs</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">Yankton Lakers 9 vs Tea Steam 0 (1PM)</span></div>
-            </div>
-
-            <br />
-            <div>
-                <div class="scheduled-game-date game-played"><strong>Saturday, August 16 - Brandon</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">Yankton Lakers 5 vs Brookings Cubs 3 (11AM)</span></div>
-                <div class="scheduled-game game-played"><span class="game-played">Yankton Lakers 3 vs Harrisburg Woodies 13 (1PM)</span></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Yankton is eliminated.</span></div>
+                <div class="scheduled-game-date"><strong>Saturday, August 1</strong></div>
+                <div class="scheduled-game"><span class="">G9 #1 Tabor vs #2 Wynot (7PM)</span></div>
+                <div class="scheduled-game" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Winner is District Champ; Loser is Rep #1</span></div>
             </div>
 
             @*<br />
         <div>
-            <div class="scheduled-game-date game-played"><strong>Sunday, August 8</strong></div>
-            <div class="scheduled-game"><span class="game-played">Yankton 2 vs Black Hills A's 4 (11AM)</span></div>
-            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Yankton is eliminated</span></div>
+            <div class="scheduled-game-header game-played"><strong>Class A South District Tournament - Yankton</strong></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Two teams advance to the Class A State Tourney.</span></div>
+
+            <div class="scheduled-game-date game-played"><strong>Friday, August 1</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">G1 #1 Harrisburg 9 vs #4 Mitchell 1 (5:30PM)</span></div>
+            <div class="scheduled-game game-played"><span class="game-played">G2 #2 Yankton 11 vs #3 Sioux Falls Brewers 17 (8PM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Saturday, August 2</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">G3 #1 Harrisburg 11 vs #3 Sioux Falls Brewers 1 (1PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Harrisburg is South District Champion.</span></div>
+            <div class="scheduled-game game-played"><span class="game-played">G4 #4 Mitchell 1 vs #2 Yankton 9 (4PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Mitchell is eliminated.</span></div>
+            <div class="scheduled-game game-played"><span class="game-played">G5 #3 Sioux Falls Brewers 1 vs #2 Yankton 2 (7PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Yankton is South District Runner-up. Sioux Falls is eliminated.</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-header game-played"><strong>District 6B Tournament - Wynot, NE</strong></div>
+
+            <div class="scheduled-game-date game-played"><strong>Thursday, July 24</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">G1 #4 Lesterville 10 vs #5 Crofton 7 (7:30PM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Friday, July 25</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">G2 #3 Freeman 8 vs #6 Irene 10 (6PM)</span></div>
+            <div class="scheduled-game game-played"><span class="game-played">G3 #2 Wynot 4 vs #7 Menno 0 (8PM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Sunday, July 27</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">G4 #5 Crofton 13 vs #7 Menno 8 (6PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Menno is eliminated.</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Tuesday, July 29</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">G5 #1 Tabor 11 vs #4 Lesterville 8 (6PM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Thursday, July 31</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">G8 #5 Crofton 7 vs #4 Lesterville 0 (6PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Crofton is Rep #3. Lesterville is eliminated.</span></div>
+            <div class="scheduled-game game-played"><span class="game-played">G6 #6 Irene 3 vs #2 Wynot 6 (8PM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Friday, August 1</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">G7 #3 Freeman 9 vs #6 Irene 6 (7:30PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Freeman is Rep #2. Irene is eliminated.</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Saturday, August 2</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">G9 #1 Tabor 17 vs #2 Wynot 7 (7PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Tabor is District 6B Champion. Wynot is Rep #1.</span></div>
         </div>*@
+        </div>
+
+        <div class="state-tourney-container">
+
+            @*<br />
+        <div>
+            <div class="scheduled-game-header"><strong><a href="https://web.gc.com/organizations/t3gQYqGKLtEk/schedule" target="_blank">View the Full Class A Bracket</a></strong></div>
+        </div>*@
+
+        <br />
+        <div>
+            <div class="scheduled-game-header"><strong>Class A State Tournament - TBD</strong></div>
+        </div>
+
+        @*<br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Saturday, August 9</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">Yankton Lakers 19 vs Black Hills A's 1 (5:30PM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-header game-played"><strong>Class A State Tournament - 2nd Round - Brandon & Valley Springs</strong></div>
+            <div class="scheduled-game-date game-played"><strong>Friday, August 15 - Valley Springs</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">Yankton Lakers 9 vs Tea Steam 0 (1PM)</span></div>
+        </div>
+
+        <br />
+        <div>
+            <div class="scheduled-game-date game-played"><strong>Saturday, August 16 - Brandon</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">Yankton Lakers 5 vs Brookings Cubs 3 (11AM)</span></div>
+            <div class="scheduled-game game-played"><span class="game-played">Yankton Lakers 3 vs Harrisburg Woodies 13 (1PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Yankton is eliminated.</span></div>
+        </div>
+
+        <br />
+            <div>
+                <div class="scheduled-game-date game-played"><strong>Sunday, August 8</strong></div>
+                <div class="scheduled-game"><span class="game-played">Yankton 2 vs Black Hills A's 4 (11AM)</span></div>
+                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Yankton is eliminated</span></div>
+            </div>
 
             <br />
             <div>
                 <div class="scheduled-game-header"><strong><a href="https://web.gc.com/organizations/TZpim7pKfdL3/schedule" target="_blank">View the Full Class B Bracket</a></strong></div>
-            </div>
+            </div>*@
 
             <br />
             <div>
-                <div class="scheduled-game-header game-played"><strong>Class B State Tournament - Brandon</strong></div>
-                @*<div class="scheduled-game-date"><strong>Wednesday, August 6 - Sunday, August 17</strong></div>*@
-                @*<div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Tabor is eliminated</span></div>*@
-                <div class="scheduled-game-date game-played"><strong>Friday, August 8</strong></div>
-                <div class="scheduled-game game-played"><span class="game-played">Wynot 3 vs Milbank 5 (11AM)</span></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Wynot is eliminated.</span></div>
-                <div class="scheduled-game game-played"><span class="game-played">Crofton 2 vs Castlewood 15 (7:30PM)</span></div>
-                <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Crofton is eliminated.</span></div>
+                <div class="scheduled-game-header"><strong>Class B State Tournament - Mitchell</strong></div>
+                <div class="scheduled-game-date"><strong>Wednesday, August 5 - Sunday, August 16</strong></div>
+                @*<div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Tabor is eliminated</span></div>
+            <div class="scheduled-game-date game-played"><strong>Friday, August 8</strong></div>
+            <div class="scheduled-game game-played"><span class="game-played">Wynot 3 vs Milbank 5 (11AM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Wynot is eliminated.</span></div>
+            <div class="scheduled-game game-played"><span class="game-played">Crofton 2 vs Castlewood 15 (7:30PM)</span></div>
+            <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Crofton is eliminated.</span></div>*@
             </div>
 
-            <br />
+            @*<br />
             <div>
                 <div class="scheduled-game-date game-played"><strong>Saturday, August 9</strong></div>
                 <div class="scheduled-game game-played"><span class="game-played">Tabor 11 vs Wessington Springs 1 (7:30PM)</span></div>
@@ -227,7 +275,7 @@
                 <div class="scheduled-game game-played" style="font-style:italic;font-weight:bold;font-size:85%;"><span>Freeman is eliminated.</span></div>
             </div>
 
-            @*<br />
+            <br />
             <div>
                 <div class="scheduled-game-date game-played"><strong>Friday, August 6</strong></div>
                 <div class="scheduled-game"><span class="game-played">Crofton 2 vs Volga 3 (1PM)</span></div>
@@ -260,43 +308,43 @@
         </div>
     </div>
 
-<script src="/Scripts/jquery-1.10.2.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.btn-toggle-reg-szn').click(function () {
-            $('.scl-regular-season-container').slideToggle("fast");
-            var btnToggleButton = $('.btn-toggle-reg-szn');
-            var btnText = btnToggleButton.text();
-            if (btnText === "Show Regular Season") {
-                btnToggleButton.text("Hide Regular Season");
-            } else {
-                btnToggleButton.text("Show Regular Season");
-            }
-        });
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btn-toggle-reg-szn').click(function () {
+                $('.scl-regular-season-container').slideToggle("fast");
+                var btnToggleButton = $('.btn-toggle-reg-szn');
+                var btnText = btnToggleButton.text();
+                if (btnText === "Show Regular Season") {
+                    btnToggleButton.text("Hide Regular Season");
+                } else {
+                    btnToggleButton.text("Show Regular Season");
+                }
+            });
 
-        $('.btn-toggle-districts').click(function () {
-            $('.scl-districts-container').slideToggle("fast");
-            var btnToggleButton = $('.btn-toggle-districts');
-            var btnText = btnToggleButton.text();
-            if (btnText === "Show District Results") {
-                btnToggleButton.text("Hide District Results");
-            } else {
-                btnToggleButton.text("Show District Results");
-            }
-        });
+            $('.btn-toggle-districts').click(function () {
+                $('.scl-districts-container').slideToggle("fast");
+                var btnToggleButton = $('.btn-toggle-districts');
+                var btnText = btnToggleButton.text();
+                if (btnText === "Show District Results") {
+                    btnToggleButton.text("Hide District Results");
+                } else {
+                    btnToggleButton.text("Show District Results");
+                }
+            });
 
-        $('.btn-toggle-state').click(function () {
-            $('.state-tourney-container').slideToggle("fast");
-            var btnToggleButton = $('.btn-toggle-state');
-            var btnText = btnToggleButton.text();
-            if (btnText === "Show State Results") {
-                btnToggleButton.text("Hide State Results");
-            } else {
-                btnToggleButton.text("Show State Results");
-            }
-        });
+            $('.btn-toggle-state').click(function () {
+                $('.state-tourney-container').slideToggle("fast");
+                var btnToggleButton = $('.btn-toggle-state');
+                var btnText = btnToggleButton.text();
+                if (btnText === "Show State Results") {
+                    btnToggleButton.text("Hide State Results");
+                } else {
+                    btnToggleButton.text("Show State Results");
+                }
+            });
 
-        // TODO: Look at doing this with an animation, to scroll to the most recently completed games.
-        //document.getElementById('most-recent').scrollIntoView(); 
-    });
-</script>
+            // TODO: Look at doing this with an animation, to scroll to the most recently completed games.
+            //document.getElementById('most-recent').scrollIntoView();
+        });
+    </script>

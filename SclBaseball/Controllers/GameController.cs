@@ -175,6 +175,9 @@ namespace SclBaseball.Controllers
                 //.ThenBy(s => s.Team.StartsWith("Tabor") ? 1 : 2) // Icky 2020 final standings hack
                 //.ThenBy(s => s.Team.StartsWith("Menno") ? 1 : 2) // Icky 2020 final standings hack
                 //                                                    //.ThenBy(s => s.Team)
+                .ThenBy(s => s.Team.StartsWith("Lesterville") ? 1 : 2) // Icky 2026 final standings hack
+                .ThenBy(s => s.Team.StartsWith("Freeman") ? 1 : 2) // Icky 2026 final standings hack
+                                                                 .ThenBy(s => s.Team)
                 .ToList();
 
             return View(standings);
